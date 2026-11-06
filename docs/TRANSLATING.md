@@ -99,6 +99,20 @@ A partial check helps too. Say which sections you went through, and leave `check
 
 The editor and the app's messages work in any language, whatever the screens can draw.
 
+### Norwegian Bokmål
+
+`nb.json` adds Bokmål to the existing language selector. It follows a Home Assistant profile set to `nb` in Automatic,
+or can be selected under Language & region. The editor and app need the build that includes this file; each screen
+needs to be rebuilt to take the language's firmware texts and the Bokmål texts of its installed plugins.
+
+The initial draft is marked `checked: false`. Screen texts and the waste plugin's setup flow have been reviewed,
+but the rest of the editor and app still need a speaker's review. Calendar and number formats come from CLDR.
+Home Assistant state words come from its official Core and Frontend distributions, with its English fallback where
+the upstream Bokmål translation has no word. Do not translate those state words by hand.
+
+The language adds no fonts, settings keys or protocol fields. Only the selected language's text table is built into
+the firmware. The existing language check measures short tile lines with the screen's own fonts, including Bokmål.
+
 ### Letters
 
 The five text fonts of every screen carry the Latin letters European languages use, and nothing more, because flash is
