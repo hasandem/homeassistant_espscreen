@@ -1075,6 +1075,10 @@ class Plugins:
                     self._settle_build(inbox, [record['id']], True, None)
                 elif state == 'building':
                     self._settle_build(inbox, [record['id']], False, 'interrupted')
+            # A failed build took a new plugin out of the file. If it was then built elsewhere, restore the file
+            # from the records too, including records an older app already marked active without restoring it.
+            if any(record['id'] in reported and reported[record['id']] == record.get('version') for record in records):
+                self.rewrite_sidecar(inbox)
 
     def payload(self, language='en'):
         self.settle()

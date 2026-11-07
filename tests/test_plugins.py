@@ -1167,7 +1167,10 @@ class Sidecar(unittest.TestCase):
     def test_written_then_attached_once_and_hidden(self):
         content = '# Written by Tessera.\npackages:\n  plugin_bus: !include ../tessera-plugins/bus/plugin.yaml\n'
         self.firmware.save_plugins('kitchen.yaml', content)
+        written = (self.firmware.root / 'kitchen.plugins.yaml').stat()
         self.firmware.save_plugins('kitchen.yaml', content)
+        self.assertEqual((self.firmware.root / 'kitchen.plugins.yaml').stat().st_ino, written.st_ino,
+                         'polling an unchanged plugin must not replace its file')
         text = (self.firmware.root / 'kitchen.yaml').read_text()
         self.assertEqual(text.count('tessera_plugins: !include kitchen.plugins.yaml'), 1)
         self.assertLess(text.index('tessera_plugins'), text.index('api:'))
@@ -1415,6 +1418,29 @@ class BuildOutcome(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(service.store.get('hall', 'clock_words')['state'], 'active')
         self.assertNotIn('reason', service.store.get('hall', 'clock_words'))
         self.assertIn('clock_words', (config / 'hall.plugins.yaml').read_text())
+
+    async def test_an_external_build_restores_the_plugins_file_after_failure(self):
+        service, config, started = self.make(['failed'])
+        await service.apply('hall', {'add': [{'id': 'clock_words', 'source': 'folder'}]})
+        await service.manager.build_queue.idle()
+        record = service.store.get('hall', 'clock_words')
+        path = config / 'hall.plugins.yaml'
+        self.assertEqual(record['state'], 'failed')
+        self.assertNotIn('clock_words', path.read_text())
+        # An unrelated version on the screen must not revive the failed installation.
+        service.running = lambda: {'hall': [{'id': 'clock_words', 'version': 'another'}]}
+        service.settle()
+        self.assertEqual(service.store.get('hall', 'clock_words')['state'], 'failed')
+        self.assertNotIn('clock_words', path.read_text())
+        service.running = lambda: {'hall': [{'id': 'clock_words', 'version': record['version']}]}
+        service.settle()
+        self.assertEqual(service.store.get('hall', 'clock_words')['state'], 'active')
+        self.assertIn('clock_words', path.read_text())
+        # Repair records already marked active by an older app, too.
+        path.write_text('{}\n')
+        service.settle()
+        self.assertIn('clock_words', path.read_text())
+        self.assertEqual(len(started), 1, 'reconciliation never starts another build')
 
     async def test_an_update_that_fails_goes_back_to_what_worked(self):
         service, config, _ = self.make(['success', 'failed'])

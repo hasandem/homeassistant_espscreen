@@ -2,6 +2,7 @@
 
 - Add Norwegian Bokmål for the screen, editor and app. The initial translation is marked for language review. Rebuild a screen after choosing Bokmål under Language & region.
 - Correct Bokmål editor terms for pages, tile positions, the sidebar and plugin likes.
+- Restore the generated plugins file when a plugin is installed by an external build after an app build failed, so it stays included in the screen's next update.
 
 - **Tessera is looking for funding.** The home overview asks for it, before the support card, with a button that mails Max: a day job comes first, and Tessera needs funding to stay alive. "Not now" puts it away for a week.
 

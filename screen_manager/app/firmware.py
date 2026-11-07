@@ -883,7 +883,8 @@ packages:
             raise ValueError(t('addon.errors.plugins.file')) from error
         if not isinstance(parsed, dict) or set(parsed) - {'packages', 'external_components'}:
             raise ValueError(t('addon.errors.plugins.file'))
-        self._atomic_write(path, content)
+        if not path.exists() or path.read_bytes() != content.encode():
+            self._atomic_write(path, content)
         self._ensure_include(profile, 'tessera_plugins', path.name)
         return self.plugins_file(profile.name)
 

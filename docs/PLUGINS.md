@@ -93,6 +93,10 @@ sentence (`api_fits`; the plugins repository's check uses the same rule). A mino
   `refresh: never`. A plugin from a test folder (`tessera-plugins/<id>/` beside the ESPHome folder) is an `!include` and
   a local external component, by a path relative to the ESPHome folder, so the app, Device Builder and a shared folder
   build the same.
+- When a screen reports the installed plugin version after an external build, the app restores its generated plugins
+  file as well as its active record. This also repairs active records left with an empty file by older apps after a
+  failed build. Reconciliation waits while a build is queued or running and leaves an unchanged file untouched.
+  `tests/test_plugins.py` covers failure, a mismatched version, external recovery and repeated reconciliation.
 - In the editor, adding and taking off are both set aside in the tray (`PluginTray.vue`, `setAside`,
   `setAsideRemoval`), with what comes along and what goes along (the add-on's plan), and Install sends each screen's
   changes in one request: one build per screen, whatever it gains and loses. Taking one off asks first when another
