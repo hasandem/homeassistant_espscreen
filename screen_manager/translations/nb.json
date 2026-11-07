@@ -742,9 +742,9 @@
         "not_on_page": "{entity} er ikke på siden {page}.",
         "move_where": "Navngi siden eller stedet for å flytte den til.",
         "spot_taken": "Dette stedet er tatt av {entity}; Gi et annet sted eller flytt det først.",
-        "page_not_empty": "Nettside {page} er ikke tom; en fullside flis trenger en egen side.",
+        "page_not_empty": "Side {page} er ikke tom. En flis som fyller hele siden, trenger en egen side.",
         "no_empty_page": "Ingen side er tom; en fullside flis trenger en side av sin egen.",
-        "page_full": "Nettside {page} er full.",
+        "page_full": "Side {page} er full.",
         "no_room": "Denne skjermen har ikke plass igjen.",
         "screen_full": "Denne skjermen har allerede 1 fliser; fjern en først. | Denne skjermen har allerede {n} fliser; fjerne en først.",
         "page_range": "Velg en side mellom 1 og {last}.",
@@ -880,7 +880,7 @@
         "layout_conflict": "Layout endret i en annen editor; reload og forene utkastet",
         "adaptation": "Skjermrutenett endret; eksplisitt layouttilpasning er nødvendig",
         "normalization": "Flisalternativer trenger normalisering før du lagrer sidedokumentet",
-        "on_tile": "Nettside {page}, flise “{tile}”: {problem}",
+        "on_tile": "Side {page}, flisen «{tile}»: {problem}",
         "ambiguous_tile": "Tile event har en tvetydig kilde; angi siden",
         "save_first": "Lagre et sidedokument før du lagrer dokumentinnstillinger",
         "destination_exists": "Destinasjonsskjermen har allerede en lagret layout",
@@ -1606,7 +1606,7 @@
       "settings": "Innstillinger",
       "new_screen_detail": "Koble til og installer",
       "plugins": "Programtillegg",
-      "manual": "Manuell"
+      "manual": "Brukerveiledning"
     },
     "api": {
       "failed": "Det fungerte ikke. Oppdater siden og prøv igjen."
@@ -1654,7 +1654,7 @@
         "reconnecting": "På nytt til Home Assistant…"
       },
       "search": "Søk",
-      "fold": "Kollider sidepanelet",
+      "fold": "Brett sammen sidepanelet",
       "unfold": "Utvid sidepanelet",
       "resize": "Endre størrelse på sidepanelet: dra eller bruk piltastene; dobbeltklikk for å nullstille",
       "screens": "Skjermer",
@@ -1854,11 +1854,11 @@
       "copied": "Utforming av {name} kopiert. Lagre og sende når det ser riktig ut.",
       "imported": "Layout importert. Lagre & send når det ser riktig ut.",
       "not_json": "Det er ikke JSON. Eksporter en layout først, eller lim en fra en annen Tessera.",
-      "count": "{n} page · {tiles} / {limit} fliser | {n} sider · {tiles} / {limit} fliser",
+      "count": "{n} side · {tiles} / {limit} fliser | {n} sider · {tiles} / {limit} fliser",
       "no_tiles": "Legg til ditt første lys, scene eller enhet fra biblioteket.",
-      "page_removed": "Nettside {page} er borte.",
-      "page_removed_tiles": "Nettside {page} og en flis er borte. | Nettside {page} og {n} Fliser er borte.",
-      "positions_hint": "Tomme spor og faste stillinger fungerer fra firmware 0.2.26. Denne skjermen (bekrefteware) {firmware}) skifter fliser opp til den første gratis spilleautomaten til den oppdateringen.",
+      "page_removed": "Side {page} er fjernet.",
+      "page_removed_tiles": "Side {page} og én flis er fjernet. | Side {page} og {n} fliser er fjernet.",
+      "positions_hint": "Tomme plasser og faste plasseringer støttes fra firmware 0.2.26. Frem til oppdateringen flytter denne skjermen (firmware {firmware}) flisene til første ledige plass.",
       "aria": "Skjermutforming",
       "add_page": "Legg til side",
       "max_pages": "1 side er mest | {n} Sider er mest",
@@ -1883,14 +1883,14 @@
       "removed_several": "1 fliser fjernet | {n} fliser fjernet"
     },
     "page": {
-      "label": "Nettside {page}",
+      "label": "Side {page}",
       "remove": "Fjern siden",
       "edit_bar": "Rediger topplinje",
       "move_title": "Dra denne siden til et annet sted på rad eller bruk ← og →",
       "move_aria": "Flytt siden {page}",
       "cell": {
         "title": "Tom plass. Klikk for å legge til en flis her, eller dra en over.",
-        "aria": "Tom plass {slot} på siden {page}: Legg til neste fliser her",
+        "aria": "Tom plass {slot} på side {page}: legg til neste flis her",
         "next": "Neste flis går her",
         "empty": "Tomt"
       }
@@ -1935,7 +1935,7 @@
       "none_found": "Ingen enheter funnet. Prøv et annet navn, rom eller filtre.",
       "full": "Denne skjermen har 1 flis. | Denne skjermen holder {n} fliser.",
       "full_update": "Denne skjermen har 1 flis; oppdater sin firmware for 48. | Denne skjermen holder {n} fliser; oppdatere sin firmware for 48.",
-      "hint": "Dra på en side, eller trykk + for å legge til den første gratis spilleautomaten. ⌘K søker alt.",
+      "hint": "Dra til en side, eller trykk + for å legge til på første ledige plass. ⌘K søker i alt.",
       "resize": "Dra for å endre størrelsen på biblioteket",
       "filter_label": "Filtrer etter type",
       "no_room": "Uten rom",
@@ -2494,7 +2494,7 @@
       "unregistered": "Denne sensoren har ingen unik ID, så Home Assistant Behold ingen innstillinger for det."
     },
     "tile_card": {
-      "label": "{name}, spilleautomat {slot} på siden {page}. Enter: konfigurer, piltastene: flytt",
+      "label": "{name}, plass {slot} på side {page}. Enter: konfigurer, piltaster: flytt",
       "remove": "Fjern flis",
       "remove_named": "Fjern {name}"
     },
@@ -2548,7 +2548,7 @@
       "screen_name": "Skjermtittel",
       "screen_name_hint": "Hver side uten egen tittel sier dette.",
       "no_title_hint": "La det være tomt å vise bare logoen.",
-      "item_label": "{name}, spilleautomat {slot}. Enter: Konfigurasjon, piler: flytt",
+      "item_label": "{name}, plass {slot}. Enter: konfigurer, piltaster: flytt",
       "max": "Maks 1 element | Maksimalt {n} gjenstander",
       "add_title": "Legg til tid, dato, analog klokke eller en enhet",
       "hint": {
@@ -2581,7 +2581,7 @@
       "date_hint": "{date} i dag. Datoen følger skjermens egen klokke.",
       "add": {
         "title": "Legg til i topplinjen",
-        "slots": "{used} av {n} spilleautomat som brukes | {used} av {n} spor som brukes",
+        "slots": "{used} av {n} plass brukt | {used} av {n} plasser brukt",
         "builtin": "Fra selve skjermen",
         "added": "Allereie lagt til",
         "suggestions": "Forslag fra Home Assistant",
@@ -2661,7 +2661,7 @@
       },
       "other_screen_busy": "Fortsatt å lagre innstillingene til den andre skjermen. Prøv igjen i et øyeblikk.",
       "reach": {
-        "pages": "page {list} | sider {list}"
+        "pages": "side {list} | sider {list}"
       },
       "status": {
         "offline": "Denne skjermen er frakoblet. Dens innstillinger kan endres når den er tilbake.",
@@ -3427,8 +3427,8 @@
       "calendar_free": "Gratis"
     },
     "pages": {
-      "repaired": "Nettside {page}, flise “{tile}”: Ta ut det som ikke passet ({what}).",
-      "repaired_tile": "Nettside {page}: tok flisen “{tile}” Av, det passet ikke lenger.",
+      "repaired": "Side {page}, flisen «{tile}»: fjernet det som ikke passet ({what}).",
+      "repaired_tile": "Side {page}: fjernet flisen «{tile}» fordi den ikke lenger passet.",
       "mode": "Redigeringsmodus",
       "simple": "Enkelt",
       "advanced": "Avansert",
@@ -3521,7 +3521,7 @@
       "view_row": "Rad",
       "view_map": "Kart",
       "preview": "Forhåndsvisning",
-      "page_menu": "Nettside {page}: mer",
+      "page_menu": "Side {page}: mer",
       "home_chip": "Hjem",
       "detail_chip": "Via en flis",
       "cells_used": "Celler i bruk",
@@ -3621,7 +3621,7 @@
       "errors": {
         "no_port": "Ingen port valgt. Hvis skjermen ikke var i listen:",
         "blocked": "Nettleseren lar ikke denne siden bruke USB porter. Sjekk nettstedets tillatelser i nettleseren, eller velg Last ned i stedet.",
-        "busy": "Skjermens port er i bruk av et annet program eller fane, for eksempel en serieskjerm eller ESPHome Nettside. Lukk den og prøv igjen.",
+        "busy": "Skjermens port brukes av et annet program eller en annen fane, for eksempel en seriellmonitor eller ESPHome Web. Lukk den og prøv igjen.",
         "connect": "Bordet svarte ikke. Hold BOOT-knappen på brettet mens du velger porten, til installasjonen starter, og prøv igjen. Avplugging og plugging i kabelen kan også hjelpe.",
         "wrong_chip": "Bordet på kabelen har en {found} chip, men denne skjermens firmware er for en {expected}. Koble i riktig skjerm, eller velg styret.",
         "wrong_image": "Firmware Tessera Bygget er for en {expected}, Men styret på kabelen har en {found}. Ingenting er skrevet.",
@@ -3807,7 +3807,7 @@
       "by": "Av {maker}",
       "label": {
         "tessera": "Fra Tessera",
-        "community": "Samfunn",
+        "community": "Fellesskap",
         "test": "Test"
       },
       "state": {
@@ -3895,7 +3895,7 @@
       "warning": "Et programtillegg kjører på skjermen med full tilgang, inkludert Wi-Fi og handlinger i Home Assistant. Byggingen skjer i denne appen og har tilgang til Home Assistant-konfigurasjonen. Bruk bare programtillegg fra utviklere du stoler på, eller les koden først.",
       "room": {
         "title": "Rom på {screen}",
-        "small": "{kb} KB mer: firmware går fra {before} til {after} av spilleautomaten.",
+        "small": "{kb} KB mer: firmwaren går fra {before} til {after} av firmwarepartisjonen.",
         "large": "{kb} KB, godt inne i rommet denne skjermen har.",
         "title_all": "Rom",
         "per_screen": "{kb} KB på hver skjerm det går på. Et 4 MB-brett viser her om det har plass til det."
@@ -4091,11 +4091,11 @@
       },
       "fits_none_group": "{n} plugin passer ingen av dine skjermer | {n} plugins passer ikke til noen av skjermene dine",
       "likes": {
-        "count": "{n} Personen liker dette | {n} Folk liker dette",
-        "like": "Som",
-        "unlike": "Ta tilbake som",
-        "ask": "Din som teller i et offentlig tall per plugin. Bare nummeret er offentlig: ingenting om deg, Home Assistant eller dine skjermer går videre.",
-        "like_hint": "Lik det, også når det er på ingen av skjermene: en takk til produsenten."
+        "count": "{n} person liker dette | {n} personer liker dette",
+        "like": "Lik",
+        "unlike": "Fjern likerklikk",
+        "ask": "Likerklikket ditt telles i et offentlig tall for programtillegget. Bare antallet er offentlig. Ingen opplysninger om deg, Home Assistant eller skjermene dine deles.",
+        "like_hint": "Gi et likerklikk, også når tillegget ikke er på noen av skjermene, som en takk til utvikleren."
       },
       "along": {
         "title": "Kommer med",

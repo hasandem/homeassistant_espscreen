@@ -107,6 +107,8 @@ needs to be rebuilt to take the language's firmware texts and the Bokmål texts 
 
 The initial draft is marked `checked: false`. Screen texts and the waste plugin's setup flow have been reviewed,
 but the rest of the editor and app still need a speaker's review. Calendar and number formats come from CLDR.
+For display pages use `side`, and for positions in the grid use `plass`. Keep product names such as ESPHome Web
+unchanged.
 Home Assistant state words come from its official Core and Frontend distributions, with its English fallback where
 the upstream Bokmål translation has no word. Do not translate those state words by hand.
 
